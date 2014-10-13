@@ -1,0 +1,41 @@
+{
+  "applicationId": "test_app_1",
+  "alias": "mytestapp1",
+  "components": {
+    
+    "subscribables": [
+      {
+        "type": "php",
+        "alias": "myphp"
+      },
+      {
+        "type": "mysql",
+        "alias": "mymysql"
+      }
+    ],
+    "dependencies": {
+      "startupOrders": [
+          "cartridge.mymysql,cartridge.myphp"
+      ],
+      "killBehaviour": "kill-dependents"
+    }
+    
+  },
+  "subscribableInfo": [
+    {
+      "alias": "mymysql",
+      "deploymentPolicy": "economyDeploymentPolicyOpenstack",
+      "autoscalingPolicy": "simpleAutoscalePolicy"
+    },
+    {
+      "alias": "myphp",
+      "deploymentPolicy": "economyDeploymentPolicyOpenstack",
+      "autoscalingPolicy": "simpleAutoscalePolicy",
+      "repoURL": "https://github.com/isurulucky/test_repo.git",
+      "privateRepo": "true",
+      "repoUsername": "isurulucky",
+      "repoPassword": "isurulucky1",
+      "dependencyAliases":["mymysql"]
+    }
+  ]
+}
